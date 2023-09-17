@@ -1,0 +1,268 @@
+.card-body {
+    position: relative;
+}
+
+#map {
+    width: 100%;
+    height: 100vh;
+}
+
+.controls {
+    position: absolute;
+    margin-top: 70px;
+    top: 10px;
+    right: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.controls button {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.controls .btn {
+    margin: 3px;
+}
+
+.controls button i {
+    font-size: 16px;
+}
+
+.controls button.btn-light {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.dropdown-menu {
+    min-width: 135px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Styling for pop-up container */
+.popup {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    width: 380px;
+    height: 180px;
+    opacity: 1;
+    padding: 10px;
+}
+
+.popup-content {
+    font-size: 12px;
+    color: #03318c;
+    font-family: "Open Sans", sans-serif;
+}
+
+.popup-content p {
+    line-height: 1;
+    margin: 5px 0;
+}
+
+
+.search-container {
+    position: absolute;
+    margin-top: 70px;
+    left: 40px;
+    top: 10px;
+    display: flex;
+    padding: 0;
+}
+
+.search-container input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    flex-grow: 1;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.search-container button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px 4px 4px 4px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #ddd;
+}
+
+
+.legend {
+    position: absolute;
+    margin-top: 370px;
+    top: 10px;
+    left: 40px;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 8px 18px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 3000;
+    border: 2px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+
+.legend .legend3 input[type="checkbox"] {
+    margin-left: 45px;
+}
+
+.legend3 .legend-icon {
+    background-image: linear-gradient(45deg, transparent 25%, #ffffff 25%, #ffffff 50%, transparent 50%, transparent 75%, #ffffff 75%);
+    /* Ganti pola fill sesuai dengan preferensi Anda */
+    background-size: 4px 4px;
+    /* Ukuran pola fill (misalnya, titik-titik) */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.legend .legend4 {
+    margin-left: 15px;
+}
+
+.legend .legend5 {
+    margin-left: 45px;
+}
+
+.legend6 .legend-icon {
+    background:
+        radial-gradient(circle, #ffffff 10%, transparent 11%),
+        radial-gradient(circle, #ffffff 10%, transparent 11%);
+    background-size: 5px 5px;
+    /* Ukuran titik-titik */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.legend h6 {
+    margin: 0 0 5px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #03318c;
+    font-family: "Roboto", sans-serif;
+}
+
+.legend ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.legend li {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    font-family: "Open Sans", sans-serif;
+}
+
+.legend-icon {
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    margin-right: 5px;
+}
+
+.legend-label {
+    font-size: 13px;
+    color: #03318c;
+
+}
+
+.legend.show {
+    display: block;
+    /* Tampilkan legenda jika kelas .show diaktifkan */
+}
+
+.legend-pattern {
+    background-image: linear-gradient(45deg, transparent 25%, #ffffff 25%, #ffffff 50%, transparent 50%, transparent 75%, #ffffff 75%);
+    background-size: 4px 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+/* Styling for suggestion bar */
+.awesomplete>ul {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    background-color: rgba(0, 0, 0, 0.089);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* New properties for spacing and background */
+    margin-top: 5px;
+    /* Adjust spacing from the input */
+    max-height: 200px;
+    /* Set maximum height for suggestion list */
+    overflow-y: auto;
+    /* Enable vertical scrolling if needed */
+}
+
+.awesomplete>ul>li {
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    /* Add smooth transition effect */
+}
+
+.awesomplete>ul>li:hover {
+    background-color: #f1f1f1;
+}
+
+/* Custom styles for the Awesomplete dropdown */
+.awesomplete ul {
+    background-color: #f0f0f0 !important;
+    /* Change the background color */
+    border: 1px solid #ccc !important;
+    /* Add a border */
+}
+
+.awesomplete li {
+    padding: 5px;
+    /* Add padding */
+    color: #333 !important;
+    /* Change the text color */
+    cursor: pointer;
+    /* Change the cursor style */
+    transition: background-color 0.3s;
+    /* Add a smooth transition for background color changes */
+}
+
+.awesomplete li:hover {
+    background-color: #0074D9 !important;
+    /* Change the hover background color */
+    color: #fff;
+    /* Change the text color on hover */
+}
+
+/* Custom styles for the input field */
+#my-input {
+    background-color: #fff !important;
+    /* Change the input background color */
+    border: 1px solid #ccc !important;
+    /* Add a border */
+    padding: 3px;
+    /* Add padding */
+    color: #333 !important;
+    /* Change the text color */
+}
+
+/* Section Password Verification */
+.password-verification {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+.password-verification h1 {
+  font-size: 24px;
+  color: green;
+}
+.password-verification p {
+  font-size: 16px;
+}
