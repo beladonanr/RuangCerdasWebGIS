@@ -63,7 +63,7 @@
 
 .search-container {
     position: absolute;
-    margin-top: 70px;
+    margin-top: 90px;
     left: 40px;
     top: 10px;
     display: flex;
@@ -93,7 +93,7 @@
 
 .legend {
     position: absolute;
-    margin-top: 370px;
+    margin-top: 140px;
     top: 10px;
     left: 40px;
     background-color: rgba(255, 255, 255, 0.6);
@@ -105,43 +105,28 @@
     border-radius: 4px 0 0 4px;
 }
 
-.legend .legend3 input[type="checkbox"] {
-    margin-left: 45px;
-}
-
-.legend3 .legend-icon {
-    background-image: linear-gradient(45deg, transparent 25%, #ffffff 25%, #ffffff 50%, transparent 50%, transparent 75%, #ffffff 75%);
-    /* Ganti pola fill sesuai dengan preferensi Anda */
-    background-size: 4px 4px;
-    /* Ukuran pola fill (misalnya, titik-titik) */
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.legend .legend4 {
-    margin-left: 15px;
-}
-
-.legend .legend5 {
-    margin-left: 45px;
-}
-
-.legend6 .legend-icon {
-    background:
-        radial-gradient(circle, #ffffff 10%, transparent 11%),
-        radial-gradient(circle, #ffffff 10%, transparent 11%);
-    background-size: 5px 5px;
-    /* Ukuran titik-titik */
-    display: inline-block;
-    vertical-align: middle;
-}
-
 .legend h6 {
     margin: 0 0 5px;
     font-weight: bold;
     font-size: 20px;
     color: #03318c;
     font-family: "Roboto", sans-serif;
+}
+
+.legend .legend3  {
+    margin-left: 15px;
+}
+
+.legend .legend4 {
+    margin-left: 45px;
+}
+
+.legend .legend5 {
+    margin-left: 45px;
+}
+
+.legend .legend6 {
+    margin-left: 15px;
 }
 
 .legend ul {
