@@ -92,10 +92,9 @@
 
 
 .legend {
-    position: absolute;
-    margin-top: 370px;
-    top: 10px;
-    left: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     background-color: rgba(255, 255, 255, 0.6);
     padding: 8px 18px;
     border-radius: 4px;
@@ -103,7 +102,7 @@
     z-index: 3000;
     border: 2px solid #ccc;
     border-radius: 4px 0 0 4px;
-}
+  }
 
 .legend .legend3 input[type="checkbox"] {
     margin-left: 45px;
@@ -118,13 +117,18 @@
     vertical-align: middle;
 }
 
-.legend .legend4 {
-    margin-left: 15px;
-}
-
-.legend .legend5 {
-    margin-left: 45px;
-}
+/* Mengatur tampilan untuk div dengan class "legend4" */
+.legend4 {
+    font-weight: bold;
+    font-size: 13px;
+    margin-right: 20px;
+  }
+  
+  /* Mengatur tampilan untuk div dengan class "legend5" */
+  .legend5 {
+    display: flex;
+    align-items: center;
+  }
 
 .legend6 .legend-icon {
     background:
