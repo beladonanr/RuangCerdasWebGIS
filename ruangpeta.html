@@ -165,10 +165,10 @@
                   </div>
 
                   <div class="legend2">
-                    <input type="checkbox" id="checkboxAdminsitrasiKelurahan" checked>
+                    <input type="checkbox" id="checkboxAdministrasiKelurahan" checked>
                     <label for="checkboxAdministrasiKelurahan">
                       <span class="legend-icon"
-                        style="background-color: rgba(255, 255, 255, 0); border: 2px solid rgba(38, 60, 133, 0.75);"></span>
+                        style="background-color: rgba(255, 255, 255, 0); border: 2px solid rgba(140, 94, 3, 0.75);"></span>
                       <span class="legend-label">Batas Administrasi Kelurahan</span>
                     </label>
                   </div>
@@ -218,22 +218,24 @@
                   </div>
 
                   <div class="legend5">
-                    <input type="checkbox" id="checkboxSKRK19" checked>
-                    <label for="checkboxSKRK19"><span class="legend-icon" style="border: 1.5px solid #64C6C2"></span>
+                    <input type="checkbox" id="checkboxSKRK19RDTR" checked>
+                    <label for="checkboxSKRK19RDTR"><span class="legend-icon"
+                        style="border: 1.5px solid #64C6C2"></span>
                       <span class="legend-label">2019</span>
                     </label>
                   </div>
 
                   <div class="legend5">
-                    <input type="checkbox" id="checkboxSKRK20" checked>
-                    <label for="checkboxSKRK20"><span class="legend-icon" style="border: 1.5px solid #FAA41A"></span>
+                    <input type="checkbox" id="checkboxSKRK20RDTR" checked>
+                    <label for="checkboxSKRK20RDTR"><span class="legend-icon"
+                        style="border: 1.5px solid #FAA41A"></span>
                       <span class="legend-label">2020</span></label>
                   </div>
 
                   <div class="legend5">
-                    <input type="checkbox" id="checkboxSKRK21" checked>
-                    <label for="checkboxSKRK21"><span class="legend-icon"
-                        style="background-color: #7C287D; border: 1.5px solid #7C287D"></span>
+                    <input type="checkbox" id="checkboxSKRK21RDTR" checked>
+                    <label for="checkboxSKRK21RDTR"><span class="legend-icon"
+                        style="border: 1.5px solid #7C287D"></span>
                       <span class="legend-label">2021</span></label>
                   </div>
 
@@ -265,14 +267,6 @@
                     <label for="checkboxIMB19"><span class="legend-icon"
                         style="background-color: #FDFF00; border: 1.5px solid #231F20"></span>
                       <span class="legend-label">2019</span>
-                    </label>
-                  </div>
-
-                  <div class="legend5">
-                    <input type="checkbox" id="checkboxIMB19" checked>
-                    <label for="checkboxIMB20"><span class="legend-icon"
-                        style="background-color: #FDFF00; border: 1.5px solid #231F20"></span>
-                      <span class="legend-label">2020</span>
                     </label>
                   </div>
 
@@ -467,7 +461,7 @@
 
             if (searchText !== '') {
               // Hapus highlight dan pop-up sebelumnya
-              var features = skrk19Layer.getSource().getFeatures();
+              var features = dataAllLayer.getSource().getFeatures();
               for (var i = 0; i < features.length; i++) {
                 var feature = features[i];
                 var featureStyle = feature.getStyle();
@@ -478,7 +472,7 @@
               }
 
               // Cari fitur yang sesuai dengan teks pencarian
-              var searchFeatures = skrk19Layer.getSource().getFeatures().filter(function (feature) {
+              var searchFeatures = dataAllLayer.getSource().getFeatures().filter(function (feature) {
                 var nama = feature.get('Nama');
                 return nama.toLowerCase().includes(searchText.toLowerCase());
               });
@@ -487,7 +481,7 @@
                 // ... (Kode yang sudah ada untuk menampilkan poligon yang sesuai dengan teks pencarian)
 
                 // Perbarui tampilan peta
-                skrk19Layer.changed();
+                dataAllLayer.changed();
 
                 var selectedFeature = getFeatureByName(searchText);
                 if (selectedFeature) {
@@ -523,7 +517,7 @@
           }
 
           function getFeatureByName(name) {
-            var features = skrk19Layer.getSource().getFeatures();
+            var features = dataAllLayer.getSource().getFeatures();
             for (var i = 0; i < features.length; i++) {
               var feature = features[i];
               if (feature.get('Nama').toLowerCase() === name.toLowerCase()) {
@@ -551,7 +545,7 @@
             var inputText = searchInput.value.toLowerCase();
             var suggestions = [];
 
-            skrk19Layer.getSource().getFeatures().forEach(function (feature) {
+            dataAllLayer.getSource().getFeatures().forEach(function (feature) {
               var nama = feature.get('Nama').toLowerCase();
               if (nama.includes(inputText)) {
                 suggestions.push(nama);
@@ -580,8 +574,28 @@
           });
 
           // -------------- End of Search Button --------------
+          // -------------- Add Data for Search Button--------------
+          var dataAllSource = new ol.source.Vector({
+            url: 'assets/Data/data all 19 21.geojson',
+            format: new ol.format.GeoJSON()
+          });
 
+          var dataAllStyle = new ol.style.Style({
+            fill: new ol.style.Fill({
+              color: 'rgba(255, 255, 255, 0)'
+            }),
+            stroke: new ol.style.Stroke({
+              color: 'rgba(255, 255, 255, 0)',
+              width: 2
+            })
+          });
 
+          var dataAllLayer = new ol.layer.Vector({
+            source: dataAllSource,
+            style: dataAllStyle,
+            visible: true
+          });
+          map.addLayer(dataAllLayer);
 
 
 
@@ -589,7 +603,7 @@
           // -------------- Add Data --------------
           // -------------- Data Batas Administrasi --------------
           var batasAdminSource = new ol.source.Vector({
-            url: 'assets/Data/batas adm.geojson',
+            url: 'assets/Data/Batas Adm Kota.geojson',
             format: new ol.format.GeoJSON()
           });
 
@@ -611,7 +625,7 @@
           map.addLayer(batasAdminLayer);
 
           var batasAdminKelSource = new ol.source.Vector({
-            url: 'assets/Data/Batas Adm Kelurahan 49S.geojson',
+            url: 'assets/Data/Batas Adm Kelurahan.geojson',
             format: new ol.format.GeoJSON()
           });
 
@@ -620,7 +634,7 @@
               color: 'rgba(255, 255, 255, 0)'
             }),
             stroke: new ol.style.Stroke({
-              color: 'rgba(38, 60, 133, 1)',
+              color: 'rgba(140, 94, 3, 1)',
               width: 2
             })
           });
@@ -661,6 +675,29 @@
           // Tambahkan layer "skrk19" ke peta
           map.addLayer(skrk19Layer);
 
+          var skrk19RDTRSource = new ol.source.Vector({
+            url: 'assets/Data/Data_SKRK 2019 RDTR 2021 - 2045_WGS84.geojson',
+            format: new ol.format.GeoJSON(),
+          });
+
+          var skrk19RDTRStyle = new ol.style.Style({
+            fill: new ol.style.Fill({
+              color: 'rgba(255, 255, 255, 0)'
+            }),
+            stroke: new ol.style.Stroke({
+              color: '#64C6C2',
+              width: 2
+            })
+          });
+
+          var skrk19RDTRLayer = new ol.layer.Vector({
+            source: skrk19RDTRSource,
+            style: skrk19RDTRStyle,
+            visible: true
+          });
+
+          // Tambahkan layer "skrk19" ke peta
+          map.addLayer(skrk19RDTRLayer);
           // Definisikan overlay untuk popup
           // Create a new overlay for the pop-up
           var popupElement = document.querySelector('.popup');
@@ -765,6 +802,40 @@
           });
           map.addOverlay(overlay);
 
+          var skrk20RDTRSource = new ol.source.Vector({
+            url: 'assets/Data/Data_SKRK 2020 RDTR 2021 - 2045_WGS84.geojson',
+            format: new ol.format.GeoJSON()
+          });
+
+          var skrk20RDTRStyle = new ol.style.Style({
+            fill: new ol.style.Fill({
+              color: 'rgba(255, 255, 255, 0)'
+            }),
+            stroke: new ol.style.Stroke({
+              color: '#FAA41A',
+              width: 1.5
+            })
+          });
+
+          var skrk20RDTRLayer = new ol.layer.Vector({
+            source: skrk20RDTRSource,
+            style: skrk20RDTRStyle,
+            visible: true
+          });
+          map.addLayer(skrk20RDTRLayer);
+
+          // Definisikan overlay untuk popup
+          // Create a new overlay for the pop-up
+          var popupElement = document.querySelector('.popup');
+          var popupContentElement = document.getElementById('popup-content');
+
+          var overlay = new ol.Overlay({
+            element: popupElement,
+            positioning: 'top-center',
+            stopEvent: false,
+          });
+          map.addOverlay(overlay);
+
           // Handle pointermove event on the GeoJSON layer to show pop-up on hover
           map.on('pointermove', function (event) {
             var pixel = map.getEventPixel(event.originalEvent);
@@ -843,6 +914,28 @@
             visible: true
           });
           map.addLayer(skrk21Layer);
+
+          var skrk21RDTRSource = new ol.source.Vector({
+            url: 'assets/Data/Data_SKRK 2021 RDTR 2021 - 2045_WGS84.geojson',
+            format: new ol.format.GeoJSON()
+          });
+
+          var skrk21RDTRStyle = new ol.style.Style({
+            fill: new ol.style.Fill({
+              color: 'rgba(255, 255, 255, 0)'
+            }),
+            stroke: new ol.style.Stroke({
+              color: '#7C287D',
+              width: 2
+            })
+          });
+
+          var skrk21RDTRLayer = new ol.layer.Vector({
+            source: skrk21RDTRSource,
+            style: skrk21RDTRStyle,
+            visible: true
+          });
+          map.addLayer(skrk21RDTRLayer);
 
           // Definisikan overlay untuk popup
           // Create a new overlay for the pop-up
@@ -1297,6 +1390,11 @@
             batasAdminLayer.setVisible(checkboxAdministrasi.checked);
           });
 
+          var checkboxAdministrasiKelurahan = document.getElementById('checkboxAdministrasiKelurahan');
+          checkboxAdministrasiKelurahan.addEventListener('change', function () {
+            batasAdminKelLayer.setVisible(checkboxAdministrasiKelurahan.checked);
+          });
+
           var checkboxSKRK19 = document.getElementById('checkboxSKRK19');
           checkboxSKRK19.addEventListener('change', function () {
             skrk19Layer.setVisible(checkboxSKRK19.checked);
@@ -1310,6 +1408,21 @@
           var checkboxSKRK21 = document.getElementById('checkboxSKRK21');
           checkboxSKRK21.addEventListener('change', function () {
             skrk21Layer.setVisible(checkboxSKRK21.checked);
+          });
+
+          var checkboxSKRK19RDTR = document.getElementById('checkboxSKRK19RDTR');
+          checkboxSKRK19RDTR.addEventListener('change', function () {
+            skrk19RDTRLayer.setVisible(checkboxSKRK19RDTR.checked);
+          });
+
+          var checkboxSKRK20RDTR = document.getElementById('checkboxSKRK20RDTR');
+          checkboxSKRK20RDTR.addEventListener('change', function () {
+            skrk20RDTRLayer.setVisible(checkboxSKRK20RDTR.checked);
+          });
+
+          var checkboxSKRK21RDTR = document.getElementById('checkboxSKRK21RDTR');
+          checkboxSKRK21RDTR.addEventListener('change', function () {
+            skrk21RDTRLayer.setVisible(checkboxSKRK21RDTR.checked);
           });
 
           var checkboxberIMB = document.getElementById('checkboxberIMB');
@@ -1333,10 +1446,10 @@
           });
           // -----------------------------------------------------
 
+
+          // --------------  End of Legenda --------------
+
         });
-        // --------------  End of Legenda --------------
-
-
 
       </script>
 
